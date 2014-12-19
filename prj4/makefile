@@ -26,6 +26,6 @@ $(objs):%.o:%.c
 
 .PHONY: clean
 clean:
-	rm -rf prog *.o *.d *.a lib/*.a obj/*.o dep/*.d
+	rm -rf prog lib/*.a obj/*.o dep/*.d
 
 

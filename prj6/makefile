@@ -2,7 +2,7 @@ srcs:=src1.c src2.c src3.c
 objs:=$(srcs:.c=.o)
 deps:=$(srcs:.c=.d)
 
-vpath %.a ./lib
+vpath %.so ./lib
 vpath %.o ./obj
 
 CFLAGS=-c -g -Wall -fPIC
@@ -26,6 +26,6 @@ $(objs):%.o:%.c
 
 .PHONY: clean
 clean:
-	rm -rf prog *.o *.d *.so lib/*.so obj/*.o dep/*.d
+	rm -rf prog lib/*.so obj/*.o dep/*.d
 
 
