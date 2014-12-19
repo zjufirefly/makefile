@@ -1,0 +1,2 @@
+单个文件夹下，编译动态库文件，obj文件放入obj文件，d文件放入dep文件夹，动态库文件放入lib文件夹
+运行程序命令：LD_LIBRARY_PATH=$PWD/lib ./prog

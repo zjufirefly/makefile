@@ -1,0 +1,2 @@
+单个文件夹下，编译动态库文件
+运行程序命令：LD_LIBRARY_PATH=$PWD/lib ./prog
