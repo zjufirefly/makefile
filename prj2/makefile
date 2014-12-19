@@ -2,7 +2,7 @@ srcs=$(wildcard *.c)
 objs:=$(srcs:.c=.o)
 deps:=$(srcs:.c=.d)
 
-CFLAGS=-c -g
+CFLAGS=-c -g -Wall
 
 prog:$(objs)
 	gcc -o prog $^

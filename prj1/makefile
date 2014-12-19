@@ -2,7 +2,7 @@ srcs=src1.c src2.c prog.c
 objs:=$(srcs:.c=.o)
 deps:=$(srcs:.c=.d)
 
-CFLAGS=-c -g
+CFLAGS=-c -g -Wall
 
 prog:$(objs)
 	gcc -o prog $^
