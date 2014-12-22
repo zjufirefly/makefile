@@ -6,14 +6,13 @@ objs:=$(srcs:%.c=%.o)
 deps:=$(srcs:.c=.d)
 libname:=$(shell pwd |sed 's/^\(.*\)[/]//' )
 vpath %.o ./obj
+vpath %.a ./lib
 
 CFLAGS=-c -g -Wall
 
 lib$(libname).a:$(objs) $(subdirs)
 	ar r lib/lib$(libname).a ./obj/*.o
 
-#.PHONY: obj_files $(subdirs)
-#obj_files:$(objs) $(subdirs)
 
 -include $(deps:%=dep/%)
 $(objs):%.o:%.c

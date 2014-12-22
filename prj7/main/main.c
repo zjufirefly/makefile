@@ -3,7 +3,8 @@
 #include <src_module2.h>
 #include <lib_module1.h>
 #include <lib_module2.h>
-
+#include <so_module1.h>
+#include <so_module2.h>
 
 int main(int argc, char* argv[])
 {
@@ -19,6 +20,10 @@ int main(int argc, char* argv[])
 	lib_module2_file1_func1();
 	printf("\n");
 
+	so_module1_file1_func1();
+	printf("\n");
+	so_module2_file1_func1();
+	
 	return 0;	
 }
 

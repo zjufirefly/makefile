@@ -1,18 +1,18 @@
-#subdirs:=$(shell ls -l| grep "^d" |awk '{print $$9}' )
-
-subdirs:=lib_dir1 lib_dir2
+subdirs:=so_dir1 so_dir2
 srcs:=$(wildcard *.c)
 objs:=$(srcs:%.c=%.o)
 deps:=$(srcs:.c=.d)
 libname:=$(shell pwd |sed 's/^\(.*\)[/]//' )
 vpath %.o ./obj
-vpath $.a ./lib
+vpath $.so ./so
 
-CFLAGS=-c -g -Wall
+CFLAGS=-c -g -Wall -fPIC
 
-lib$(libname).a:$(objs) $(subdirs)
-	ar r lib/lib$(libname).a ./obj/*.o
+lib$(libname).so:$(objs) $(subdirs)
+	gcc -shared -fPIC -o so/lib$(libname).so ./obj/*.o
 
+#.PHONY: obj_files $(subdirs)
+#obj_files:$(objs) $(subdirs)
 
 -include $(deps:%=dep/%)
 $(objs):%.o:%.c
@@ -25,6 +25,6 @@ $(subdirs):
 
 .PHONY: clean
 clean:
-	rm -rf obj/*.o dep/*.d lib/*.a
+	rm -rf obj/*.o dep/*.d so/*.so
 	for dir in $(subdirs);do make clean -C $$dir; done	
 
