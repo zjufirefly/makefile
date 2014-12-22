@@ -15,12 +15,13 @@ obj_files:$(objs) $(subdirs)
 $(objs):%.o:%.c
 	gcc $(CFLAGS) -MMD -MP -MF"$(@:%.o=dep/%.d)" -MT"$@" -o obj/$@ $<
 
+.PHONY: $(subdirs)
 $(subdirs):
 	make -C $@
 	cp $@/obj/* ./obj/
 
 .PHONY: clean
-clean:$(subdirs_clean)
+clean:
 	rm -rf obj/*.o dep/*.d
 	for dir in $(subdirs);do make clean -C $$dir; done	
 

@@ -1,1 +1,1 @@
-void src_module2_dir2_file1_func2();
+void src_module2_dir2_file2_func1();
