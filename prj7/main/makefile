@@ -1,7 +1,7 @@
 srcs:=$(wildcard *.c)
 objs:=$(srcs:%.c=%.o)
 deps:=$(srcs:.c=.d)
-incs:=-I../src_module1/include -I../src_module2/include
+incs:=-I../src_module1/include -I../src_module2/include -I../lib_module1/include -I../lib_module2/include
 vpath %.o ./obj
 
 CFLAGS=-c -g -Wall $(incs)
