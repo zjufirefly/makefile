@@ -1,0 +1,28 @@
+ifndef CFLAGS
+	include $(root_dir)/env
+endif
+
+subdirs+=
+srcs:=$(wildcard *.c)
+objs:=$(srcs:%.c=%.o)
+deps:=$(srcs:.c=.d)
+vpath %.o ./obj
+
+
+.PHONY: obj_files $(subdirs)
+obj_files:$(objs) $(subdirs)
+
+-include $(deps:%=dep/%)
+$(objs):%.o:%.c
+	gcc $(CFLAGS) $(INCS) -MMD -MP -MF"$(@:%.o=dep/%.d)" -MT"$@" -o obj/$@ $<
+
+.PHONY: $(subdirs)
+$(subdirs):
+	make -C $@
+	cp $@/obj/* ./obj/
+
+.PHONY: clean
+clean:
+	rm -rf obj/*.o dep/*.d lib/*.a so/*.so
+	for dir in $(subdirs);do make clean -C $$dir; done
+

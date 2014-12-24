@@ -1,0 +1,15 @@
+ifndef CFLAGS
+	include $(root_dir)/env
+endif
+
+subdirs+=
+libname:=$(shell pwd |sed 's/^\(.*\)[/]//' )
+vpath %.a ./lib
+
+
+lib$(libname).a:
+
+include $(root_dir)/makefile_src
+
+lib$(libname).a:$(objs) $(subdirs)
+	ar r lib/lib$(libname).a ./obj/*.o

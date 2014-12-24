@@ -1,0 +1,15 @@
+ifndef CFLAGS
+	include $(root_dir)/env
+endif
+
+subdirs+=
+libname:=$(shell pwd |sed 's/^\(.*\)[/]//' )
+vpath %.so ./so
+CFLAGS+=-fPIC
+
+lib$(libname).so:
+
+include $(root_dir)/makefile_src
+
+lib$(libname).so:$(objs) $(subdirs)
+	gcc -shared -fPIC -o so/lib$(libname).so ./obj/*.o
